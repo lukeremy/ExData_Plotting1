@@ -20,14 +20,22 @@ data <- read.csv.sql(df, sql = "select * from file where Date in ('1/2/2007', '2
 data[data == "?"] <- NA
 data <- na.omit(data)
 
-## create histogram of frequency of Global Active Power, add labels, copy to png file working directory
-hist(data$Global_active_power, col="red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
-dev.copy(png, file="./plot1.png")
+## convert Date/Time formats, create new variable with Date & Time info
+data$Date <- as.Date(data$Date, "%d/%m/%Y")
+datetime <- paste(data$Date, data$Time, sep = " ")
+data$datetime <- as.POSIXct(datetime)
 
+png("./plot3.png")
 
+plot(data$datetime, data$Sub_metering_1,
+     type="l",col="black",xlab = "", ylab = "Energy sub metering")
+lines(data$datetime,data$Sub_metering_2, col="red")
+lines(data$datetime,data$Sub_metering_3, col="blue")
+legend("topright", col=c("black","red","blue"),
+       c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       lty = 1, lwd = c(2.5,2.5))
 
-
-
+dev.off()
 
 
 
