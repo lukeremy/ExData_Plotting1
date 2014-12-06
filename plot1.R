@@ -21,8 +21,11 @@ data[data == "?"] <- NA
 data <- na.omit(data)
 
 ## create histogram of frequency of Global Active Power, add labels, copy to png file working directory
-hist(data$Global_active_power, col="red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
-dev.copy(png, file="./plot1.png")
+hist(data$Global_active_power, col="red", family="Times",pointsize=8,
+     main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+par(oma="1,1,1,1")
+dev.copy(png, file="./plot1.png",width=480,height=480)
+dev.off()
 
 
 

@@ -25,7 +25,7 @@ data$Date <- as.Date(data$Date, "%d/%m/%Y")
 datetime <- paste(data$Date, data$Time, sep = " ")
 data$datetime <- as.POSIXct(datetime)
 
-png("./plot3.png")
+png("./plot3.png",width=480,height=480)
 
 plot(data$datetime, data$Sub_metering_1,
      type="l",col="black",xlab = "", ylab = "Energy sub metering")

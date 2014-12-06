@@ -27,7 +27,7 @@ data$datetime <- as.POSIXct(datetime)
 
 ## create plot of Global Active Power by day
 plot2 <- plot(data$datetime,data$Global_active_power,pch=".",type="o",xlab="",ylab="Global active power (kilowatts)")
-dev.copy(png,file="./plot2.png")
+dev.copy(png,file="./plot2.png",width=480,height=480)
 dev.off()
 
 
